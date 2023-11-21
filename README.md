@@ -1,2 +1,5 @@
-# nayemng-rssi-dotnet-8-hack
-.NET 8 global Hack - project RSSI - Recon Solar Shield Initiative
+# Recon Solar Shield Initiative - .NET 8 GLobal Hack
+
+`Magnetic reconnection` (MR) is a process in which opposing magnetic field lines merge. If magnetic reconnection occurs between the `interplanetary magnetic field (IMF)` and `Earth’s magnetic field`, solar-wind plasma particles are permitted to enter the region of space near Earth (the geospace), potentially causing space weather events that could impact satellites in Earth orbit, as well as power systems on Earth.
+
+Recon Solar Shield Initiative delivers a cutting-edge web platform using ACE-Satellite and DSCOVR Satellite data to make predictions of magnetic reconnection events. Through advanced analytics and intuitive visualizations, it deciphers complex solar-terrestrial phenomena, offering crucial insights into space weather patterns. By enhancing predictive capabilities using artificial intelligence and fostering scientific understanding, our platform safeguards infrastructure, supports space exploration, and educates the public, marking a significant stride in space science and technology.
