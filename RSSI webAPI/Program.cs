@@ -1,5 +1,8 @@
 using RSSI_webAPI.Repositories.Contracts;
 using RSSI_webAPI.Repositories;
+using RSSI_webAPI.Authorization;
+using RSSI_webAPI.Extensions;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +13,38 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(def => {
+    def.AddSecurityDefinition("StaticApiKey", new OpenApiSecurityScheme
+    {
+        Description = "The Api key to access the controllers",
+        Type = SecuritySchemeType.ApiKey,
+        Name = "x-api-key",
+        In = ParameterLocation.Header,
+        Scheme = "StaticApiKeyAuthorizationScheme",
+    });
 
+    var scheme = new OpenApiSecurityScheme
+    {
+        Reference = new OpenApiReference
+        {
+            Id = "StaticApiKey",
+            Type = ReferenceType.SecurityScheme,
+        },
+        In = ParameterLocation.Header,
+    };
+
+    var requirement = new OpenApiSecurityRequirement
+    {
+        { scheme, new List<string>() }
+    };
+
+    def.AddSecurityRequirement(requirement);
+});
+
+builder.Services.AddScoped<ISatelliteDataRepository, SatelliteDataRepository>();
 builder.Services.AddScoped<IEarthDataRepository, EarthDataRepository>();
+builder.Services.AddAutoMapper(typeof(MappingConfiguration));
+builder.Services.AddScoped<AuthFilter>();
 
 // Configure CORS policy
 builder.Services.AddCors(p => p.AddPolicy("corspolicy", build => {
@@ -31,6 +63,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("corspolicy");
+
+// app.UseMiddleware<AuthMiddleware>();
 
 app.UseAuthorization();
 

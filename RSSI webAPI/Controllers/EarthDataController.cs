@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RSSI_webAPI.Authorization;
 using RSSI_webAPI.Repositories.Contracts;
 
 namespace RSSI_webAPI.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[ServiceFilter(typeof(AuthFilter))]
 public class EarthDataController : ControllerBase
 {
     private readonly IEarthDataRepository _repository;
