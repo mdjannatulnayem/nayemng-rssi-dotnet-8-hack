@@ -9,14 +9,12 @@ using RSSI_webAPI.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
-
-
 builder.Services.AddDbContext<ApplicationDbContext>(option => {
     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection"));
 });
 
-
 builder.Services.AddControllers();
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient();
