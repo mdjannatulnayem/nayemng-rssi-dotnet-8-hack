@@ -1,10 +1,13 @@
+// Imports
+using RSSI_webAPI.Authorization;
+using RSSI_webAPI.Data;
+using RSSI_webAPI.Extensions;
 using RSSI_webAPI.Repositories.Contracts;
 using RSSI_webAPI.Repositories;
-using RSSI_webAPI.Authorization;
-using RSSI_webAPI.Extensions;
+using RSSI_webAPI.Services;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-using RSSI_webAPI.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(option => {
 
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
+builder.Services.AddHostedService<WorkerService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient();
