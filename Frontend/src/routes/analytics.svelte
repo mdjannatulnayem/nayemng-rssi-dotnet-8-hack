@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
 
   const apiKey = "replace-with-the-api-key"; // replace with the api key!
-  const baseApiUrl = "https://app-rssi-api-eastus-dev-001.azurewebsites.net";
+  const baseApiUrl = "https://app-rssi-api-sea-dev.azurewebsites.net";
   // const baseApiUrl = "https://localhost:7095";
   const earthApiUrl = baseApiUrl + "/api/earthdata/ncei";
   const solarWindApiUrl = baseApiUrl + "/api/satellitedata/ace"

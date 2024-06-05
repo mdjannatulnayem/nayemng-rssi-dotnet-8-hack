@@ -56,7 +56,8 @@ public class WorkerService : BackgroundService
                     delay = 60000;
                 }
 
-                if (earthData.Vertical == satData.BzGSM && satData.BzGSM < 0)
+                // check for large magnetic reconnection
+                if (Math.Abs(earthData.Vertical + satData.BzGSM) <= 1000 && satData.BzGSM < 0)
                 {
                     _log.LogInformation("{t} : Reconnection alert !!!", t);
 

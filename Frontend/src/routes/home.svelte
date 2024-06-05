@@ -7,7 +7,7 @@
     import { Chart } from "chart.js/auto";
 
     const apiKey = "replace-with-the-api-key"; // replace with the api key!
-    const apiBaseUrl = "https://app-rssi-api-eastus-dev-001.azurewebsites.net";
+    const apiBaseUrl = "https://app-rssi-api-sea-dev.azurewebsites.net";
     //const apiBaseUrl = "https://localhost:7095";
     // Common API key for both endpoints
     const earthDataApiUrl = apiBaseUrl + "/api/earthdata/ncei";
@@ -165,7 +165,7 @@
         const Vertical = earthData.Vertical;
         const BzGsm = solarWindData.bzGSM;
 
-        if (Vertical === BzGsm && BzGsm < 0) {
+        if (Math.abs(Vertical === BzGsm) <= 1000 && BzGsm < 0) {
              // Magnetic reconnection detected
             return true;
         } else {
